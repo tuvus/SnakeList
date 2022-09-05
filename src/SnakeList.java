@@ -80,6 +80,28 @@ public class SnakeList<T> implements List {
     }
 
     @Override
+    public Object remove(int index) {
+        if (size == 0)
+            return null;
+        T e = get(index);
+        if (index <= 0) {
+            array[start] = null;
+            start = getRealIndex(start + 1);
+            size--;
+        } else if (index >= size - 1) {
+            array[getRealIndex(index)] = null;
+            size--;
+        } else {
+            if (index <= size / 2) {
+                array[getRealIndex(index)] = (T)remove(index - 1);
+            } else {
+                array[getRealIndex(index)] = (T)remove(index + 1);
+            }
+        }
+        return e;
+    }
+
+    @Override
     public boolean remove(Object o) {
         return false;
     }
@@ -121,22 +143,6 @@ public class SnakeList<T> implements List {
         if (array.length == 0)
             return 0;
         return (index + start) % array.length;
-    }
-
-    @Override
-    public Object remove(int index) {
-        if (size == 0)
-            return null;
-        T e = get(index);
-        if (index <= 0) {
-            array[start] = null;
-            start = getRealIndex(start + 1);
-            size--;
-        } else if (index >= size - 1) {
-            array[getRealIndex(index)] = null;
-            size--;
-        }
-        return e;
     }
 
     @Override
