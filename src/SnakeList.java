@@ -63,14 +63,19 @@ public class SnakeList<T> implements List {
             if (start == -1)
                 start = array.length - 1;
             else
-                start = getRealIndex(1);
+                start = getRealIndex(0);
             array[start] = e;
             size++;
-            return;
         } else if (index >= size) {
             array[getRealIndex(index)] = e;
             size++;
-            return;
+        } else {
+            if (index <= size / 2) {
+                add(index - 1, get(index - 1));
+            } else {
+                add(index + 1, get(index));
+            }
+            array[getRealIndex(index)] = e;
         }
     }
 

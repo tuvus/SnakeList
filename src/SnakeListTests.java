@@ -121,11 +121,48 @@ public class SnakeListTests {
     }
 
     @Test
+    public void testAddToBeginning() {
+        SnakeList<Integer> snakeList = new SnakeList(Integer.class, 3);
+        snakeList.add(5);
+        snakeList.add(3);
+        snakeList.add(8);
+        snakeList.remove(0);
+        snakeList.add(0, 23);
+        Assert.assertArrayEquals(new Integer[]{23, 3, 8}, snakeList.toArray());
+    }
+
+    @Test
     public void testAddToBeginningLoop() {
         SnakeList<Integer> snakeList = new SnakeList(Integer.class, 3);
         snakeList.add(5);
         snakeList.add(3);
         snakeList.add(0, 23);
         Assert.assertArrayEquals(new Integer[]{5, 3, 23}, snakeList.toArray());
+    }
+
+    @Test
+    public void testAddToMiddleFront() {
+        SnakeList<Integer> snakeList = new SnakeList(Integer.class, 5);
+        snakeList.add(5);
+        snakeList.add(3);
+        snakeList.add(125);
+        snakeList.add(6);
+        snakeList.add(71);
+        snakeList.remove(0);
+        snakeList.add(1, 12);
+        Assert.assertArrayEquals(new Integer[]{3, 12, 125, 6, 71}, snakeList.toArray());
+    }
+
+    @Test
+    public void testAddToMiddleEnd() {
+        SnakeList<Integer> snakeList = new SnakeList(Integer.class, 5);
+        snakeList.add(5);
+        snakeList.add(3);
+        snakeList.add(125);
+        snakeList.add(6);
+        snakeList.add(71);
+        snakeList.remove(4);
+        snakeList.add(3, 12);
+        Assert.assertArrayEquals(new Integer[]{5, 3, 125, 12, 6}, snakeList.toArray());
     }
 }
