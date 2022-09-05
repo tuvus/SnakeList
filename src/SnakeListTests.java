@@ -167,6 +167,32 @@ public class SnakeListTests {
     }
 
     @Test
+    public void testAddToMiddleFrontLoop() {
+        SnakeList<Integer> snakeList = new SnakeList(Integer.class, 5);
+        snakeList.add(5);
+        snakeList.add(3);
+        snakeList.add(125);
+        snakeList.add(6);
+        snakeList.add(71);
+        snakeList.remove(4);
+        snakeList.add(1, 12);
+        Assert.assertArrayEquals(new Integer[]{12, 3, 125, 6, 5}, snakeList.toArray());
+    }
+
+    @Test
+    public void testAddToMiddleEndLoop() {
+        SnakeList<Integer> snakeList = new SnakeList(Integer.class, 5);
+        snakeList.add(5);
+        snakeList.add(3);
+        snakeList.add(125);
+        snakeList.add(6);
+        snakeList.add(71);
+        snakeList.remove(0);
+        snakeList.add(3, 12);
+        Assert.assertArrayEquals(new Integer[]{71, 3, 125, 6, 12}, snakeList.toArray());
+    }
+
+    @Test
     public void testRemoveFromMiddleFront() {
         SnakeList<Integer> snakeList = new SnakeList(Integer.class, 5);
         snakeList.add(5);
