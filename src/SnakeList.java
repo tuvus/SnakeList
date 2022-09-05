@@ -126,7 +126,7 @@ public class SnakeList<T> implements List {
 
     @Override
     public void clear() {
-        for (int i = size; i >= 0; i--) {
+        for (int i = size - 1; i >= 0; i--) {
             remove(i);
         }
     }
@@ -162,7 +162,11 @@ public class SnakeList<T> implements List {
 
     @Override
     public int lastIndexOf(Object o) {
-        return 0;
+        for (int i = size - 1; i >= 0; i--) {
+            if (get(i).equals(o))
+                return i;
+        }
+        return -1;
     }
 
     @Override

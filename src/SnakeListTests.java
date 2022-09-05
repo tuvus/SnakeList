@@ -100,6 +100,7 @@ public class SnakeListTests {
         Assert.assertEquals(2, snakeList.indexOf(3));
     }
 
+
     @Test
     public void testIndexOfLoop() {
         SnakeList<Integer> snakeList = new SnakeList(Integer.class, 5);
@@ -118,6 +119,18 @@ public class SnakeListTests {
     public void testFalseIndexOf() {
         SnakeList<Integer> snakeList = new SnakeList(new Integer[]{1, 7, 3, 4, 9});
         Assert.assertEquals(-1, snakeList.indexOf(21321));
+    }
+
+    @Test
+    public void testDuplicateIndexOf() {
+        SnakeList<Integer> snakeList = new SnakeList(new Integer[]{1, 3, 1, 3, 9});
+        Assert.assertEquals(1, snakeList.indexOf(3));
+    }
+
+    @Test
+    public void testLastIndexOf() {
+        SnakeList<Integer> snakeList = new SnakeList(new Integer[]{1, 3, 1, 3, 9});
+        Assert.assertEquals(3, snakeList.lastIndexOf(3));
     }
 
     @Test
