@@ -135,8 +135,16 @@ public class SnakeListTests {
     @Test
     public void testRemoveObject() {
         SnakeList<Integer> snakeList = new SnakeList(new Integer[]{1, 7, 3, 4, 9});
-        snakeList.remove((Integer)3);
+        snakeList.remove((Integer) 3);
         Assert.assertArrayEquals(new Integer[]{null, 1, 7, 4, 9}, snakeList.toArray());
+    }
+
+    @Test
+    public void testClear() {
+        SnakeList<Integer> snakeList = new SnakeList(new Integer[]{1, 7, 3, 4, 9});
+        snakeList.clear();
+        Assert.assertArrayEquals(new Integer[]{null, null, null, null, null}, snakeList.toArray());
+        Assert.assertEquals(0,snakeList.size());
     }
 
     @Test

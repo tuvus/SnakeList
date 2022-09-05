@@ -126,7 +126,9 @@ public class SnakeList<T> implements List {
 
     @Override
     public void clear() {
-
+        for (int i = size; i >= 0; i--) {
+            remove(i);
+        }
     }
 
     @Override
