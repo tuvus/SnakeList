@@ -180,8 +180,14 @@ public class SnakeList<T> implements List {
     }
 
     @Override
-    public List subList(int fromIndex, int toIndex) {
-        return null;
+    public SnakeList subList(int fromIndex, int toIndex) {
+        if (fromIndex < 0 || toIndex > size || fromIndex > toIndex)
+            throw new IndexOutOfBoundsException();
+        T[] newArray = (T[]) Array.newInstance(array.getClass().componentType(), toIndex - fromIndex + 1);
+        for (int i = 0; i < toIndex - fromIndex + 1; i++) {
+            newArray[i] = get(i + fromIndex);
+        }
+        return new SnakeList(newArray);
     }
 
     @Override

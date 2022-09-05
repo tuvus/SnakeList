@@ -157,7 +157,7 @@ public class SnakeListTests {
         SnakeList<Integer> snakeList = new SnakeList(new Integer[]{1, 7, 3, 4, 9});
         snakeList.clear();
         Assert.assertArrayEquals(new Integer[]{null, null, null, null, null}, snakeList.toArray());
-        Assert.assertEquals(0,snakeList.size());
+        Assert.assertEquals(0, snakeList.size());
     }
 
     @Test
@@ -291,5 +291,11 @@ public class SnakeListTests {
         snakeList.add(71);
         snakeList.remove(3);
         Assert.assertArrayEquals(new Integer[]{5, 3, 125, 71, null}, snakeList.toArray());
+    }
+
+    @Test
+    public void testSubList() {
+        SnakeList<Integer> snakeList = new SnakeList(new Integer[]{6, 1, 3, 7, 8});
+        Assert.assertArrayEquals(new Integer[]{1, 3, 7}, snakeList.subList(1, 3).toArray());
     }
 }
