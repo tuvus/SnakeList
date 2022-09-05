@@ -37,6 +37,17 @@ public class SnakeListTests {
     }
 
     @Test
+    public void testSet() {
+        SnakeList<Integer> snakeList = new SnakeList(Integer.class, 4);
+        snakeList.add(5);
+        snakeList.add(9);
+        snakeList.add(2);
+        snakeList.add(6);
+        snakeList.set(1, 16);
+        Assert.assertArrayEquals(new Integer[]{5, 16, 2, 6}, snakeList.toArray());
+    }
+
+    @Test
     public void testGetRealIndexOver() {
         SnakeList<Integer> snakeList = new SnakeList(new Integer[]{5, 9, 2});
         Assert.assertEquals(1, snakeList.getRealIndex(4));

@@ -93,9 +93,9 @@ public class SnakeList<T> implements List {
             size--;
         } else {
             if (index <= size / 2) {
-                array[getRealIndex(index)] = (T)remove(index - 1);
+                array[getRealIndex(index)] = (T) remove(index - 1);
             } else {
-                array[getRealIndex(index)] = (T)remove(index + 1);
+                array[getRealIndex(index)] = (T) remove(index + 1);
             }
         }
         return e;
@@ -135,8 +135,12 @@ public class SnakeList<T> implements List {
     }
 
     @Override
-    public Object set(int index, Object element) {
-        return null;
+    public T set(int index, Object element) {
+        if (size == 0 || index < 0 || index >= size)
+            throw new IndexOutOfBoundsException();
+        T oldElement = get(index);
+        array[getRealIndex(index)] = (T)element;
+        return oldElement;
     }
 
     protected int getRealIndex(int index) {
