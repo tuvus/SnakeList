@@ -58,9 +58,12 @@ public class SnakeList<T> implements List {
         if (size + 1 > array.length) {
             Resize(Math.max(array.length, 1));
         }
-        if (index < 0) {
+        if (index <= 0 && size != 0) {
             start--;
-            start = (start + 1) % array.length;
+            if (start == -1)
+                start = array.length - 1;
+            else
+                start = (start + 1) % array.length;
             array[start] = e;
             size++;
             return;

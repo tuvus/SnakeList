@@ -53,6 +53,20 @@ public class SnakeListTests {
     }
 
     @Test
+    public void testResizeCopy() {
+        SnakeList<Integer> snakeList = new SnakeList(Integer.class, 3);
+        snakeList.add(5);
+        snakeList.add(9);
+        snakeList.add(2);
+        snakeList.Resize(5);
+        Integer[] testArray = new Integer[snakeList.array.length];
+        testArray[0] = 5;
+        testArray[1] = 9;
+        testArray[2] = 2;
+        Assert.assertArrayEquals(testArray, snakeList.toArray());
+    }
+
+    @Test
     public void testAddResize() {
         SnakeList<Integer> snakeList = new SnakeList(Integer.class, 0);
         snakeList.add(12);
@@ -62,6 +76,15 @@ public class SnakeListTests {
         testArray[0] = 12;
         testArray[1] = 7;
         testArray[2] = 41;
-        Assert.assertArrayEquals("ArrayConstructorTest", testArray, snakeList.toArray());
+        Assert.assertArrayEquals(testArray, snakeList.toArray());
+    }
+
+    @Test
+    public void testAddToBeginningLoop() {
+        SnakeList<Integer> snakeList = new SnakeList(Integer.class, 3);
+        snakeList.add(5);
+        snakeList.add(3);
+        snakeList.add(0,23);
+        Assert.assertArrayEquals(new Integer[]{5, 3, 23}, snakeList.toArray());
     }
 }
