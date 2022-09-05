@@ -99,7 +99,11 @@ public class SnakeList<T> implements List {
 
     @Override
     public boolean remove(Object o) {
-        return false;
+        int index = indexOf(o);
+        if (index == -1)
+            return false;
+        remove(index);
+        return true;
     }
 
     @Override

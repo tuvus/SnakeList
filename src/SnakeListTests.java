@@ -133,6 +133,13 @@ public class SnakeListTests {
     }
 
     @Test
+    public void testRemoveObject() {
+        SnakeList<Integer> snakeList = new SnakeList(new Integer[]{1, 7, 3, 4, 9});
+        snakeList.remove((Integer)3);
+        Assert.assertArrayEquals(new Integer[]{null, 1, 7, 4, 9}, snakeList.toArray());
+    }
+
+    @Test
     public void testResize() {
         SnakeList<Integer> snakeList = new SnakeList(Integer.class, 0);
         snakeList.Resize(3);
