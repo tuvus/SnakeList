@@ -86,7 +86,7 @@ public class SnakeList<T> implements List {
         T e = get(index);
         if (index <= 0) {
             array[start] = null;
-            start = getRealIndex(start + 1);
+            start = getRealIndex(1);
             size--;
         } else if (index >= size - 1) {
             array[getRealIndex(index)] = null;
