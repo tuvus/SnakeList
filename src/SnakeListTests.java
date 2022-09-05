@@ -22,12 +22,53 @@ public class SnakeListTests {
     }
 
     @Test
+    public void testGetRealIndex() {
+        SnakeList<Integer> snakeList = new SnakeList(new Integer[]{5, 2, 7});
+        Assert.assertEquals(0, snakeList.getRealIndex(0));
+    }
+
+    @Test
     public void testAdd() {
         SnakeList<Integer> snakeList = new SnakeList(Integer.class, 3);
         snakeList.add(5);
         snakeList.add(9);
         snakeList.add(2);
         Assert.assertArrayEquals(new Integer[]{5, 9, 2}, snakeList.toArray());
+    }
+
+    @Test
+    public void testGetRealIndexOver() {
+        SnakeList<Integer> snakeList = new SnakeList(new Integer[]{5, 9, 2});
+        Assert.assertEquals(1, snakeList.getRealIndex(4));
+    }
+
+    @Test
+    public void testGetRealIndexEnd() {
+        SnakeList<Integer> snakeList = new SnakeList(new Integer[]{5, 9, 2, 8});
+        Assert.assertEquals(3, snakeList.getRealIndex(3));
+    }
+
+    @Test
+    public void testRemoveFromBeginning() {
+        SnakeList<Integer> snakeList = new SnakeList(new Integer[]{5, 9, 2, 8});
+        snakeList.remove(0);
+        Assert.assertArrayEquals(new Integer[]{null, 9, 2, 8}, snakeList.toArray());
+    }
+
+    @Test
+    public void testRemoveFromEnd() {
+        SnakeList<Integer> snakeList = new SnakeList(new Integer[]{5, 9, 2, 8});
+        snakeList.remove(3);
+        Assert.assertArrayEquals(new Integer[]{5, 9, 2, null}, snakeList.toArray());
+    }
+
+    @Test
+    public void testRemoveFromEndLoop() {
+        SnakeList<Integer> snakeList = new SnakeList(new Integer[]{5, 9, 2, 8});
+        snakeList.remove(0);
+        snakeList.add(3,17);
+        snakeList.remove(3);
+        Assert.assertArrayEquals(new Integer[]{null, 9, 2, 8}, snakeList.toArray());
     }
 
     @Test
@@ -84,7 +125,7 @@ public class SnakeListTests {
         SnakeList<Integer> snakeList = new SnakeList(Integer.class, 3);
         snakeList.add(5);
         snakeList.add(3);
-        snakeList.add(0,23);
+        snakeList.add(0, 23);
         Assert.assertArrayEquals(new Integer[]{5, 3, 23}, snakeList.toArray());
     }
 }

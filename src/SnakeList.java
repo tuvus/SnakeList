@@ -2,9 +2,9 @@ import java.lang.reflect.Array;
 import java.util.*;
 
 public class SnakeList<T> implements List {
-    T[] array;
-    int size;
-    int start;
+    protected T[] array;
+    protected int size;
+    protected int start;
 
     public SnakeList(Class<T> c) {
         this(c, 10);
@@ -63,12 +63,12 @@ public class SnakeList<T> implements List {
             if (start == -1)
                 start = array.length - 1;
             else
-                start = (start + 1) % array.length;
+                start = getRealIndex(1);
             array[start] = e;
             size++;
             return;
         } else if (index >= size) {
-            array[(index + start) % array.length] = e;
+            array[getRealIndex(index)] = e;
             size++;
             return;
         }
@@ -92,7 +92,6 @@ public class SnakeList<T> implements List {
     public void Resize(int amount) {
         T[] newArray = (T[]) Array.newInstance(array.getClass().componentType(), size + amount);
         for (int i = 0; i < size; i++) {
-//            T obj = (T)get(i);
             newArray[i] = get(i);
         }
         array = newArray;
@@ -105,7 +104,7 @@ public class SnakeList<T> implements List {
 
     @Override
     public T get(int index) {
-        return array[(start + index) % array.length];
+        return array[getRealIndex(index)];
     }
 
     @Override
@@ -113,9 +112,26 @@ public class SnakeList<T> implements List {
         return null;
     }
 
+    protected int getRealIndex(int index) {
+        if (array.length == 0)
+            return 0;
+        return (index + start) % array.length;
+    }
+
     @Override
     public Object remove(int index) {
-        return null;
+        if (size == 0)
+            return null;
+        T e = get(index);
+        if (index <= 0) {
+            array[start] = null;
+            start = getRealIndex(start + 1);
+            size--;
+        } else if (index >= size - 1) {
+            array[getRealIndex(index)] = null;
+            size--;
+        }
+        return e;
     }
 
     @Override
