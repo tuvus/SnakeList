@@ -95,6 +95,44 @@ public class SnakeListTests {
     }
 
     @Test
+    public void testIndexOf() {
+        SnakeList<Integer> snakeList = new SnakeList(new Integer[]{1, 7, 3, 4, 9});
+        Assert.assertEquals(2, snakeList.indexOf(3));
+    }
+
+    @Test
+    public void testIndexOfLoop() {
+        SnakeList<Integer> snakeList = new SnakeList(Integer.class, 5);
+        snakeList.add(5);
+        snakeList.add(5);
+        snakeList.add(5);
+        snakeList.add(5);
+        snakeList.add(5);
+        snakeList.remove(0);
+        snakeList.remove(0);
+        snakeList.add(1);
+        Assert.assertEquals(3, snakeList.indexOf(1));
+    }
+
+    @Test
+    public void testFalseIndexOf() {
+        SnakeList<Integer> snakeList = new SnakeList(new Integer[]{1, 7, 3, 4, 9});
+        Assert.assertEquals(-1, snakeList.indexOf(21321));
+    }
+
+    @Test
+    public void testContains() {
+        SnakeList<Integer> snakeList = new SnakeList(new Integer[]{1, 7, 3, 4, 9});
+        Assert.assertEquals(true, snakeList.contains(4));
+    }
+
+    @Test
+    public void testContainsFalse() {
+        SnakeList<Integer> snakeList = new SnakeList(new Integer[]{1, 7, 3, 4, 9});
+        Assert.assertEquals(false, snakeList.contains(48));
+    }
+
+    @Test
     public void testResize() {
         SnakeList<Integer> snakeList = new SnakeList(Integer.class, 0);
         snakeList.Resize(3);

@@ -34,11 +34,7 @@ public class SnakeList<T> implements List {
 
     @Override
     public boolean contains(Object o) {
-        for (int i = 0; i < size; i++) {
-            if (get(i).equals(o))
-                return true;
-        }
-        return false;
+        return indexOf(o) != -1;
     }
 
     @Override
@@ -151,7 +147,11 @@ public class SnakeList<T> implements List {
 
     @Override
     public int indexOf(Object o) {
-        return 0;
+        for (int i = 0; i < size; i++) {
+            if (get(i).equals(o))
+                return i;
+        }
+        return -1;
     }
 
     @Override
