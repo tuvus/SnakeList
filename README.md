@@ -1,11 +1,11 @@
-Snake List
-==========
-This project is a new collection that features around half the amount of adding and removing as a regular list.
-The idea is that the begging of the list can be at any index of the array and can loop around the ends.
+#A new list structure
 
-Because of this feature adding and removing from the beginning takes much less time.
+---
+SnakeList is a new list that features a slightly different way of adding and removing elements.
+The idea is that the beginning of the list can be at any index of the array and can loop around the ends.
+This reduces the time for adding and removing to the beginning by around half as much.
 
-Authors
--------
-Oskar, Niesen
-oskar-github@niesens.com
+##Authors
+
+[tuvus](https://github.com/tuvus/) - 
+    **Oskar Niesen** <<oskar-github@niesens.com>> (he/him)
