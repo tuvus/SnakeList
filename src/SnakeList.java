@@ -121,6 +121,7 @@ public class SnakeList<T> implements List {
         for (int i = 0; i < size; i++) {
             newArray[i] = get(i);
         }
+        start = 0;
         array = newArray;
     }
 
