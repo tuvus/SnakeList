@@ -211,6 +211,14 @@ public class SnakeList<T> implements List {
         return Arrays.copyOf(array, array.length);
     }
 
+    public Object[] toExactArray() {
+        T[] newArray = (T[])Array.newInstance(array.getClass().componentType(),size);
+        for (int i = 0; i < size; i++) {
+            newArray[i] = get(i);
+        }
+        return newArray;
+    }
+
     @Override
     public Object[] toArray(Object[] a) {
         return new Object[0];

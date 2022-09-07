@@ -16,7 +16,7 @@ public class SnakeListAdvancedTests {
         snakeList.remove(false);
         snakeList.add(false);
         snakeList.add(false);
-        Assert.assertArrayEquals(new Boolean[]{false, false, null, false, true, false}, snakeList.toArray());
+        Assert.assertArrayEquals(new Boolean[]{false, true, false, false, false}, snakeList.toExactArray());
     }
 
     @Test
@@ -24,9 +24,9 @@ public class SnakeListAdvancedTests {
         SnakeList snakeList = new SnakeList(String.class, 0);
         snakeList.add("alpha");
         snakeList.add(0, "beta");
-        snakeList.add(0,"omega");
-        snakeList.add(snakeList.size,"gamma");
+        snakeList.add(0, "omega");
+        snakeList.add(snakeList.size, "gamma");
         snakeList.remove(snakeList.get(1));
-        Assert.assertArrayEquals(new String[] { "omega", "alpha", "gamma", null}, snakeList.toArray());
+        Assert.assertArrayEquals(new String[]{"omega", "alpha", "gamma"}, snakeList.toExactArray());
     }
 }
