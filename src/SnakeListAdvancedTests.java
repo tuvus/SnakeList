@@ -29,4 +29,26 @@ public class SnakeListAdvancedTests {
         snakeList.remove(snakeList.get(1));
         Assert.assertArrayEquals(new String[]{"omega", "alpha", "gamma"}, snakeList.toExactArray());
     }
+
+    @Test
+    public void Test3() {
+        SnakeList snakeList = new SnakeList(Integer.class, 10);
+        snakeList.add(-1);
+        for (int i = 0; i < 30; i++) {
+            snakeList.add(1);
+            snakeList.remove(0);
+        }
+        Assert.assertArrayEquals(new Integer[]{ 1 }, snakeList.toExactArray());
+    }
+
+    @Test
+    public void Test4() {
+        SnakeList snakeList = new SnakeList(Integer.class, 8);
+        snakeList.add(-1);
+        for (int i = 0; i < 30; i++) {
+            snakeList.add(0, 1);
+            snakeList.remove(snakeList.size() - 1);
+        }
+        Assert.assertArrayEquals(new Integer[]{ 1 }, snakeList.toExactArray());
+    }
 }
