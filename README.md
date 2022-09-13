@@ -17,6 +17,7 @@ that the built-in java list has once it is actually implemented.
 
 ## Authors
 <hr>
+
 [tuvus](https://github.com/tuvus/) - 
     **Oskar Niesen** <<oskar-github@niesens.com>> (he/him)
 
