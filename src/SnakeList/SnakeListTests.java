@@ -199,6 +199,25 @@ public class SnakeListTests {
     }
 
     @Test
+    public void testAddLoopResize() {
+        SnakeList<Integer> snakeList = new SnakeList(Integer.class, 5);
+        snakeList.add(12);
+        snakeList.add(7);
+        snakeList.add(41);
+        snakeList.add(0, 50);
+        snakeList.add(0, 102);
+        snakeList.add(0, 24);
+        Integer[] testArray = new Integer[6];
+        testArray[0] = 24;
+        testArray[1] = 102;
+        testArray[2] = 50;
+        testArray[3] = 12;
+        testArray[4] = 7;
+        testArray[5] = 41;
+        Assert.assertArrayEquals(testArray, snakeList.toExactArray());
+    }
+
+    @Test
     public void testAddToBeginning() {
         SnakeList<Integer> snakeList = new SnakeList(Integer.class, 3);
         snakeList.add(5);

@@ -120,6 +120,17 @@ public class SnakeList<T> implements List {
 
     public void Resize(int amount) {
         T[] newArray = (T[]) Array.newInstance(array.getClass().componentType(), size + amount);
+        int copySize = Math.min(start + size, array.length - start);
+        System.arraycopy(array, start, newArray, 0, Math.min(start + size, array.length - start));
+        if (size > array.length - start) {
+            System.arraycopy(array, 0, newArray, Math.min(start + size, array.length - start), size - Math.min(start + size, array.length - start));
+        }
+        start = 0;
+        array = newArray;
+    }
+
+    public void OldResize(int amount) {
+        T[] newArray = (T[]) Array.newInstance(array.getClass().componentType(), size + amount);
         for (int i = 0; i < size; i++) {
             newArray[i] = get(i);
         }
@@ -144,7 +155,7 @@ public class SnakeList<T> implements List {
         if (size == 0 || index < 0 || index >= size)
             throw new IndexOutOfBoundsException();
         T oldElement = get(index);
-        array[getRealIndex(index)] = (T)element;
+        array[getRealIndex(index)] = (T) element;
         return oldElement;
     }
 
@@ -214,7 +225,7 @@ public class SnakeList<T> implements List {
     }
 
     public Object[] toExactArray() {
-        T[] newArray = (T[])Array.newInstance(array.getClass().componentType(),size);
+        T[] newArray = (T[]) Array.newInstance(array.getClass().componentType(), size);
         for (int i = 0; i < size; i++) {
             newArray[i] = get(i);
         }
