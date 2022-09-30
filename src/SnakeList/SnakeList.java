@@ -120,10 +120,10 @@ public class SnakeList<T> implements List {
 
     public void Resize(int amount) {
         T[] newArray = (T[]) Array.newInstance(array.getClass().componentType(), size + amount);
-        int copySize = Math.min(start + size, array.length - start);
-        System.arraycopy(array, start, newArray, 0, Math.min(start + size, array.length - start));
+        int initialSectionLength = Math.min(size, array.length - start);
+        System.arraycopy(array, start, newArray, 0, initialSectionLength);
         if (size > array.length - start) {
-            System.arraycopy(array, 0, newArray, Math.min(start + size, array.length - start), size - Math.min(start + size, array.length - start));
+            System.arraycopy(array, 0, newArray, initialSectionLength, size - initialSectionLength);
         }
         start = 0;
         array = newArray;
@@ -221,15 +221,21 @@ public class SnakeList<T> implements List {
 
     @Override
     public Object[] toArray() {
-        return Arrays.copyOf(array, array.length);
-    }
-
-    public Object[] toExactArray() {
         T[] newArray = (T[]) Array.newInstance(array.getClass().componentType(), size);
-        for (int i = 0; i < size; i++) {
-            newArray[i] = get(i);
+        int initialSectionLength = Math.min(size, array.length - start);
+        System.arraycopy(array, start, newArray, 0, initialSectionLength);
+        if (size > array.length - start) {
+            System.arraycopy(array, 0, newArray, initialSectionLength, size - initialSectionLength);
         }
         return newArray;
+    }
+
+    /**
+     * Returns a copy of the exact array that the snakeList stores
+     * @return Object[]
+     */
+    public Object[] toExactArray() {
+        return Arrays.copyOf(array, array.length);
     }
 
     @Override
