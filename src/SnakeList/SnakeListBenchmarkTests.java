@@ -1,33 +1,48 @@
 package SnakeList;
 
 import org.openjdk.jmh.annotations.*;
+import org.openjdk.jmh.infra.Blackhole;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 @BenchmarkMode(Mode.AverageTime)
-@OutputTimeUnit(TimeUnit.NANOSECONDS)
-@Fork(value = 1)
-@Warmup(iterations = 0)
-@Measurement(iterations = 10, timeUnit = TimeUnit.NANOSECONDS, time = 1)
+@OutputTimeUnit(TimeUnit.MILLISECONDS)
+@Fork(value = 2)
+@Warmup(iterations = 2)
+@Measurement(iterations = 50, timeUnit = TimeUnit.MILLISECONDS, time = 1)
 public class SnakeListBenchmarkTests {
     @Benchmark
     public void snakeListBenchmark1() {
-        DoOperation(new SnakeList(Integer.class, 100));
+        RandomOperation(new SnakeList(Integer.class, 100));
     }
 
     @Benchmark
     public void arrayListBenchmark1() {
-        DoOperation(new ArrayList<Integer>(100));
+        RandomOperation(new ArrayList<Integer>(100));
     }
 
     @Benchmark
     public void controlArrayListBenchmark1() {
-        DoOperation(new ControlArrayList(Integer.class,100));
+        RandomOperation(new ControlArrayList(Integer.class,100));
     }
 
-    void DoOperation(List<Integer> list) {
-        for (int i = 0; i < 1000; i++) {
-            list.add(i);
+    void RandomOperation(List<Integer> list) {
+        Random random = new Random(14124);
+        for (int i = 0; i < 50000; i++) {
+            int randomOperation = random.nextInt(20);
+            if (randomOperation == 0) {
+                list.clear();
+            } else if (randomOperation <= 10 && list.size() > 0) {
+                int index = random.nextInt(list.size());
+                int number = random.nextInt();
+                list.add(index,number);
+            } else if (randomOperation <= 15 && list.size() > 0) {
+                int index = random.nextInt(list.size());
+                list.remove(index);
+            } else {
+                int number = random.nextInt();
+                list.add(number);
+            }
         }
     }
 }
