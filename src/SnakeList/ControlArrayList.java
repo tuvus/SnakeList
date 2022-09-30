@@ -93,7 +93,7 @@ public class ControlArrayList<T> implements List {
 
     public void Resize(int amount) {
         T[] newArray = (T[]) Array.newInstance(array.getClass().componentType(), size + amount);
-        System.arraycopy(array, 0, size, 0, size + amount);
+        System.arraycopy(array, 0, newArray, 0, size);
         array = newArray;
     }
 

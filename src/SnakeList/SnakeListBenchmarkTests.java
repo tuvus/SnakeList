@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 @Fork(value = 1)
-@Warmup(iterations = 1)
+@Warmup(iterations = 0)
 @Measurement(iterations = 10, timeUnit = TimeUnit.NANOSECONDS, time = 1)
 public class SnakeListBenchmarkTests {
     @Benchmark
@@ -19,6 +19,7 @@ public class SnakeListBenchmarkTests {
     public void arrayListBenchmark1() {
         DoOperation(new ArrayList<Integer>(100));
     }
+
     @Benchmark
     public void controlArrayListBenchmark1() {
         DoOperation(new ControlArrayList(Integer.class,100));
