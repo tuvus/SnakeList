@@ -51,7 +51,7 @@ public class ControlArrayList<T> implements List {
     public void add(int index, Object element) {
         T e = (T) element;
         if (size + 1 > array.length) {
-            Resize(Math.max(array.length, 1));
+            resize(Math.max(array.length, 1));
         }
         for (int i = size; i > index; i--) {
             array[i] = array[i - 1];
@@ -91,7 +91,7 @@ public class ControlArrayList<T> implements List {
         return false;
     }
 
-    public void Resize(int amount) {
+    public void resize(int amount) {
         T[] newArray = (T[]) Array.newInstance(array.getClass().componentType(), size + amount);
         System.arraycopy(array, 0, newArray, 0, size);
         array = newArray;
@@ -174,15 +174,7 @@ public class ControlArrayList<T> implements List {
 
     @Override
     public Object[] toArray() {
-        return Arrays.copyOf(array, array.length);
-    }
-
-    public Object[] toExactArray() {
-        T[] newArray = (T[]) Array.newInstance(array.getClass().componentType(), size);
-        for (int i = 0; i < size; i++) {
-            newArray[i] = get(i);
-        }
-        return newArray;
+        return Arrays.copyOf(array, size);
     }
 
     @Override

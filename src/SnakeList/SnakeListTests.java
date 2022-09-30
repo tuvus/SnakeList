@@ -164,7 +164,7 @@ public class SnakeListTests {
     @Test
     public void testResize() {
         SnakeList<Integer> snakeList = new SnakeList(Integer.class, 0);
-        snakeList.Resize(3);
+        snakeList.resize(3);
         snakeList.add(5);
         snakeList.add(9);
         snakeList.add(2);
@@ -177,7 +177,7 @@ public class SnakeListTests {
         snakeList.add(5);
         snakeList.add(9);
         snakeList.add(2);
-        snakeList.Resize(5);
+        snakeList.resize(5);
         Integer[] testArray = new Integer[snakeList.array.length];
         testArray[0] = 5;
         testArray[1] = 9;

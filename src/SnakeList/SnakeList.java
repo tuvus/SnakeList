@@ -54,7 +54,7 @@ public class SnakeList<T> implements List {
     public void add(int index, Object element) {
         T e = (T) element;
         if (size + 1 > array.length) {
-            Resize(Math.max(array.length, 1));
+            resize(Math.max(array.length, 1));
         }
         if (index <= 0 && size != 0) {
             start--;
@@ -118,21 +118,12 @@ public class SnakeList<T> implements List {
         return false;
     }
 
-    public void Resize(int amount) {
+    public void resize(int amount) {
         T[] newArray = (T[]) Array.newInstance(array.getClass().componentType(), size + amount);
         int initialSectionLength = Math.min(size, array.length - start);
         System.arraycopy(array, start, newArray, 0, initialSectionLength);
         if (size > array.length - start) {
             System.arraycopy(array, 0, newArray, initialSectionLength, size - initialSectionLength);
-        }
-        start = 0;
-        array = newArray;
-    }
-
-    public void OldResize(int amount) {
-        T[] newArray = (T[]) Array.newInstance(array.getClass().componentType(), size + amount);
-        for (int i = 0; i < size; i++) {
-            newArray[i] = get(i);
         }
         start = 0;
         array = newArray;
