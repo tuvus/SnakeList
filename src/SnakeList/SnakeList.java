@@ -151,8 +151,8 @@ public class SnakeList<T> implements List {
     }
 
     protected int getRealIndex(int index) {
-        if (array.length == 0)
-            return 0;
+        if (index + start < array.length)
+            return index;
         return (index + start) % array.length;
     }
 
